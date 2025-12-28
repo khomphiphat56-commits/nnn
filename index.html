@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1 Year Anniversary 💜</title>
+
+<style>
+:root{
+  --p1:#f8f4ff;
+  --p2:#e9ddff;
+  --p3:#d6c6ff;
+  --accent:#a78bfa;
+  --deep:#5b4b8a;
+}
+
+*{box-sizing:border-box;font-family:"Segoe UI",system-ui,sans-serif}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(135deg,var(--p1),var(--p2),var(--p3));
+  overflow:hidden;
+}
+
+/* แสงพื้นหลัง */
+.glow{
+  position:fixed;
+  width:420px;
+  height:420px;
+  background:radial-gradient(circle,rgba(205,180,255,.45),transparent 70%);
+  filter:blur(70px);
+  animation:floatGlow 18s infinite alternate ease-in-out;
+  z-index:0;
+}
+.g1{top:-140px;left:-140px}
+.g2{bottom:-160px;right:-160px;animation-delay:6s}
+
+@keyframes floatGlow{
+  to{transform:translateY(120px)}
+}
+
+/* ของลอย */
+.bg{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+
+.float-img,.float-heart{
+  position:absolute;
+  bottom:-80px;
+  opacity:.8;
+  animation:rise linear forwards;
+}
+
+.float-img{
+  width:40px;   /* ลด ~5% */
+  height:40px;
+  border-radius:50%;
+  object-fit:cover;
+  box-shadow:0 8px 18px rgba(130,90,200,.35);
+}
+
+@keyframes rise{
+  from{transform:translateY(0) scale(.9);opacity:0}
+  15%{opacity:.85}
+  to{transform:translateY(-130vh) scale(1.1);opacity:0}
+}
+
+/* หน้าเข้า */
+#intro{
+  position:fixed;
+  inset:0;
+  z-index:30;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:
+    radial-gradient(circle at top,#e6dbff,transparent 55%),
+    linear-gradient(135deg,#cbb6ff,#9f83ff);
+  transition:1s ease;
+}
+
+.intro-card{
+  background:rgba(255,255,255,.25);
+  backdrop-filter:blur(18px);
+  padding:56px 42px;
+  border-radius:42px;
+  text-align:center;
+  color:#fff;
+  box-shadow:0 30px 80px rgba(0,0,0,.25);
+}
+
+.intro-card h1{
+  font-size:34px;
+  margin-bottom:12px;
+}
+
+.intro-card p{
+  font-size:15px;
+  opacity:.95;
+}
+
+.intro-card button{
+  margin-top:32px;
+  padding:16px 52px;
+  border:none;
+  border-radius:36px;
+  font-size:16px;
+  cursor:pointer;
+  background:#fff;
+  color:#7a4bff;
+  box-shadow:0 14px 36px rgba(0,0,0,.35);
+}
+
+/* หน้าหลัก */
+.main{
+  position:relative;
+  z-index:10;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
+}
+.main.show{opacity:1;transform:none}
+
+/* การ์ด */
+.card{
+  max-width:520px;
+  background:rgba(255,255,255,.82);
+  backdrop-filter:blur(20px);
+  border-radius:40px;
+  padding:52px 36px;
+  text-align:center;
+  box-shadow:0 45px 90px rgba(140,110,200,.35);
+}
+
+/* รูปคู่ */
+.photo-wrap{
+  position:relative;
+  width:200px;
+  height:200px;
+  margin:0 auto 22px;
+}
+
+.photo-wrap::before{
+  content:"";
+  position:absolute;
+  inset:-16px;
+  border-radius:50%;
+  background:conic-gradient(#dbc9ff,#b99cff,#dbc9ff);
+  filter:blur(14px);
+  animation:spin 14s linear infinite;
+}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.photo{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  overflow:hidden;
+  border:7px solid #fff;
+  box-shadow:0 22px 50px rgba(140,110,200,.45);
+}
+
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* ข้อความ */
+h2{
+  margin:22px 0 6px;
+  font-size:32px;
+  color:var(--deep);
+}
+
+.names{
+  font-size:19px;
+  color:#6a5f8f;
+}
+
+.badge{
+  display:inline-block;
+  margin-top:10px;
+  padding:8px 22px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#cbb6ff,#9a7dff);
+  color:#fff;
+  font-size:14px;
+  box-shadow:0 12px 26px rgba(140,110,200,.45);
+}
+
+.msg{
+  margin-top:28px;
+  font-size:15px;
+  line-height:2;
+  color:#6a5f8f;
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+<div class="bg" id="bg"></div>
+
+<!-- หน้าเข้า -->
+<div id="intro">
+  <div class="intro-card">
+    <h1>สำหรับคนพิเศษ 💜</h1>
+    <p>แตะเพื่อเปิดความทรงจำ 1 ปีของเรา</p>
+    <button onclick="enter()">✨ เปิดความรัก</button>
+  </div>
+</div>
+
+<!-- หน้าหลัก -->
+<div class="main" id="main">
+  <div class="card">
+
+    <div class="photo-wrap">
+      <div class="photo">
+        <img src="main.jpg">
+      </div>
+    </div>
+
+    <h2>Happy Anniversary</h2>
+    <div class="names">เอิร์ท 🤍 โอปอ</div>
+    <div class="badge">💜 1 Year 💜</div>
+
+    <div class="msg">
+      (แก้ข้อความตรงนี้ได้เอง)<br><br>
+      หนึ่งปีของเรา<br>
+      อาจไม่สมบูรณ์แบบ<br>
+      แต่เป็นหนึ่งปีที่อบอุ่นที่สุด
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* เสียงอบอุ่น */
+let ctx, master;
+function startSound(){
+  ctx=new (window.AudioContext||window.webkitAudioContext)();
+  master=ctx.createGain();
+  master.gain.value=0.14;
+  master.connect(ctx.destination);
+
+  [220,277,330].forEach(f=>{
+    const o=ctx.createOscillator();
+    const g=ctx.createGain();
+    o.type="triangle";
+    o.frequency.value=f;
+    g.gain.value=0;
+    o.connect(g);g.connect(master);
+    o.start();
+    setInterval(()=>{
+      g.gain.setTargetAtTime(0.05,ctx.currentTime,3);
+      setTimeout(()=>g.gain.setTargetAtTime(0,ctx.currentTime,4),6000);
+    },9000);
+  });
+}
+
+function enter(){
+  startSound();
+  document.getElementById("intro").style.opacity=0;
+  setTimeout(()=>{
+    intro.style.display="none";
+    main.classList.add("show");
+  },900);
+}
+
+/* ของลอย (ลดจำนวน ~5%) */
+const bg=document.getElementById("bg");
+const hearts=["💜","🤍","✨","💫"];
+const imgs=["pic1.jpg","pic2.jpg"];
+
+setInterval(()=>{
+  if(Math.random()>0.5){
+    const i=document.createElement("img");
+    i.src=imgs[Math.floor(Math.random()*imgs.length)];
+    i.className="float-img";
+    i.style.left=Math.random()*100+"vw";
+    i.style.animationDuration=(7+Math.random()*6)+"s";
+    bg.appendChild(i);
+    setTimeout(()=>i.remove(),16000);
+  }else{
+    const h=document.createElement("div");
+    h.className="float-heart";
+    h.textContent=hearts[Math.floor(Math.random()*hearts.length)];
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(18+Math.random()*22)+"px";
+    h.style.animationDuration=(7+Math.random()*6)+"s";
+    bg.appendChild(h);
+    setTimeout(()=>h.remove(),16000);
+  }
+},150); /* ลดความถี่ */
+</script>
+
+</body>
+</html>
